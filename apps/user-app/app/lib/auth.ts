@@ -37,7 +37,7 @@ export const authOptions = {
             }
 
             try {
-                const user = await db.user.create({
+                const existingUser = await db.user.create({
                     data: {
                         number: credentials.phone,
                         password: hashedPassword,
@@ -47,10 +47,10 @@ export const authOptions = {
                 });
             
                 return {
-                    id: user.id.toString(),
-                    name: user.name,
-                    number: user.number,
-                    email: user.email
+                    id: existingUser.id.toString(),
+                    name: existingUser.name,
+                    number: existingUser.number,
+                    email: existingUser.email
                 }
             } catch(e) {
                 console.error(e);
@@ -61,13 +61,13 @@ export const authOptions = {
         })
     ],
     secret: process.env.JWT_SECRET || "secret",
-    // callbacks: {
-    //     // TODO: can u fix the type here? Using any is bad
-    //     async session({ token, session }: any) {
-    //         session.user.id = token.sub
+    callbacks: {
+        // TODO: can u fix the type here? Using any is bad
+        async session({ token, session }: any) {
+            session.user.id = token.sub
 
-    //         return session
-    //     }
-    // }
+            return session
+        }
+    }
   }
   

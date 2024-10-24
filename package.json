@@ -1,5 +1,5 @@
 {
-  "name": "Pay",
+  "name": "@repo/Pay",
   "private": true,
   "scripts": {
     "build": "turbo build",

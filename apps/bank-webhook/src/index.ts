@@ -4,19 +4,27 @@ const app = express();
 
 app.use(express.json())
 
+
 app.post("/hdfcWebhook", async (req, res) => {
     //TODO: Add zod validation here?
     //TODO: HDFC bank should ideally send us a secret so we know this is sent by them
     const paymentInformation: {
         token: string;
         userId: string;
-        amount: string
+        amount: string;
+        status: string
     } = {
         token: req.body.token,
-        userId: req.body.user_identifier,
-        amount: req.body.amount
+        userId: req.body.userId,
+        amount: req.body.amount,
+        status: req.body.status
     };
-
+    if(paymentInformation.status == "Success"){
+        res.status(411).json({
+            Message: "This req has been computed already" 
+        })
+    }
+    console.log("Received payment information:", paymentInformation);
     try {
         await db.$transaction([
             db.balance.updateMany({
@@ -51,3 +59,6 @@ app.post("/hdfcWebhook", async (req, res) => {
     }
 
 })
+
+
+app.listen(3003);

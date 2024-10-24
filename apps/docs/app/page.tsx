@@ -46,7 +46,9 @@ export default function Home() {
             Read our docs
           </a>
         </div>
-        <Button appName="docs" className={styles.secondary}>
+        <Button onClick={()=>{
+
+        }} >
           Open alert
         </Button>
       </main>
