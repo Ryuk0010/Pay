@@ -41,7 +41,7 @@ export const P2pTranaction = ({
 
           <div className="items-start text-left min-w-28">
             <div className="text-sm">Send To</div>
-            <div className="text-slate-600 text-xs">{t.toUser.number || "N/A"}</div>
+            <div className="text-slate-600 text-xs">{t.toUser.number  || "N/A"} </div>
           </div>
         </div>
       ))}
