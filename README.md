@@ -1,6 +1,20 @@
 # Still working on it
 
-
+# start the project
+Copy the project in your machine
+go to /package/db folder and run
+```sh
+npx prisma init
+```
+migrate the database -
+```sh
+npx prisma migrate dev
+```
+generate prisma client -
+```sh
+npx prisma generate
+```
+Get your data base string and create a .env file, you can see .env.example for referance
 # Turborepo starter
 
 This is an official starter Turborepo.
