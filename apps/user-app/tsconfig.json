@@ -1,12 +1,6 @@
 {
   "extends": "@repo/typescript-config/nextjs.json",
   "compilerOptions": {
-    "baseUrl": ".", // Important for paths to work
-    "paths": {
-      "@components/*": ["components/*"],
-      "@lib/*": ["lib/*"],
-      "@utils/*": ["utils/*"]
-    },
     "plugins": [
       {
         "name": "next"
@@ -15,9 +9,10 @@
   },
   "include": [
     "next-env.d.ts",
+    "next.config.mjs",
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts"
-  ],
+, "app/(dashboard)/p2ptransfer", "tailwind.config.js"  ],
   "exclude": ["node_modules"]
 }

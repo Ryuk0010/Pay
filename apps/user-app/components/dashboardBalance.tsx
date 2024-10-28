@@ -22,9 +22,6 @@ async function getBalance() {
 
 export const GetdashboardCard = async () => {
     const balance = await getBalance();
-    const date = new Date();
-    const hours = date.getHours();
-    const greeting = (hours < 12)? ", Good Morning" : ", Good Evening";
     return <div>
         <div>
         <div className="bg-slate-200 w-[35vh] md:w-[50vh] lg:w-[70vh] h-72 mt-28 rounded-xl shadow-xl flex flex-col justify-evenly">
