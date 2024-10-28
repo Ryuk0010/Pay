@@ -24,7 +24,7 @@ export const P2pTranaction = ({
   return (
     <div className="h-full w-full flex justify-center items-center">
   <Card title="Recent Transactions">
-    <div className="min-w-96 max-h-[500px] overflow-y-auto pt-4">
+    <div className="min-w-96 max-h-[500px] pt-4 overflow-x-hidden">
       {transactions.map((t, index) => (
         <div key={index} className="grid-cols-3 flex items-start py-4">
           <div className="items-start text-left min-w-32">

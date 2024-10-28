@@ -7,14 +7,14 @@ export const BalanceCard = ({amount, locked}: {
     return <Card title="Balance">
         <div>
             <div className="flex justify-between">
-                Unlocked Balance
+                Wallet Balance
             </div>
             <div>
                 {amount / 100} INR
             </div>
 
             <div className="flex justify-between">
-                Total locked Balance
+                Account Balance
             </div>
             <div>
                 {locked / 100} INR

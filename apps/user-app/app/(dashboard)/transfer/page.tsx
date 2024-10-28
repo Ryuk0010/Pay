@@ -5,9 +5,14 @@ import { BalanceCard } from "../../../components/BalanceCard"
 import { authOptions } from "../../lib/auth";
 import { OnRampTransactions } from "../../../components/OnRampTransactions";
 import prisma from "@repo/db/client"
+import { redirect } from "next/navigation";
+import { Card } from "@repo/ui/card";
 
 async function getBalance() {
   const session = await getServerSession(authOptions);
+  if (!session || !session.user || !session.user.id) {
+    redirect('/mainpage')
+  }
   const balance = await prisma.balance.findFirst({
       where: {
           userId: Number(session?.user?.id)
@@ -38,12 +43,20 @@ export default async function () {
   const balance = await getBalance();
   const transactions = await getOnRampTransactions();
   return (
-    <div className="w-screen px-4 flex overflow-x-hidden">
-      <div className="pt-4 w-full pr-4">
+    <div className="flex justify-center ">
+      <div className="lg:w-5/6 lg:flex lg:justify-center pt-10 md:flex ">
+      <div>
+      <div className="pt-4 max-w-[78vh]">
+        <Card title="Note">I have created a backend server to communicate with banking APIs, but since i do not have the access to a banking api, so I am hitting the end point and adding money to the wallet</Card>
+      </div>
+         <div className="pt-4 pr-4 lg:w-[80vh] lg:h-[40vh] w-96">
         <AddMoney/>
       </div>
+     
+      </div>
+     
       
-      <div className="pt-4 w-full">
+      <div className="pt-4 lg:w-[80vh] lg:h-[40vh] w-96 lg:ml-20">
         <BalanceCard amount={balance.amount} locked={balance.locked} />
         <div className="pt-4">
         <OnRampTransactions transactions={transactions} />
@@ -51,6 +64,8 @@ export default async function () {
       </div>
       
     </div>
+    </div>
+    
   )
 }
 

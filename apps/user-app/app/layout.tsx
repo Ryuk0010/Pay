@@ -20,7 +20,7 @@ export default function RootLayout({
     <html lang="en">
       <Providers>
         <body className={inter.className}>
-          <div className="min-w-screen min-h-screen bg-[#ebe6e6]">
+          <div className="w-screen h-screen overflow-x-hidden bg-[#cfccdf]">
             <AppbarClient />
             {children}
           </div>

@@ -1,21 +1,28 @@
 import db from "@repo/db/client";
 import CredentialsProvider from "next-auth/providers/credentials"
 import bcrypt from "bcryptjs";
+import GoogleProvider from 'next-auth/providers/google'
 
+// const credentialsSchema = z.object({
+//     name: z.string(),
+//     phone: z.string().min(10, "Phone number must be at least 10 digits"),
+//     email: z.string().email(),
+//     password: z.string().min(6, "Password must be at least 6 characters"),
+// });
 
 export const authOptions = {
+
     providers: [
       CredentialsProvider({
           name: 'Credentials',
           credentials: {
             name: { label: "Name", type: "text", placeholder: "Mousam Bachhar", required: true},
             phone: { label: "Phone number", type: "text", placeholder: "Your Phone Number", required: true },
-            email: { label: "Email", type: "text", placeholder: "Mousam@gmail.com", required: true },
             password: { label: "Password", type: "password", placeholder: "123123", required: true },
           },
-          // TODO: User credentials type from next-aut
+
           async authorize(credentials: any) {
-            // Do zod validation, OTP validation here
+        
             const hashedPassword = await bcrypt.hash(credentials.password, 10);
             const existingUser = await db.user.findFirst({
                 where: {

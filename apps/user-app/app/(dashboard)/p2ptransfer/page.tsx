@@ -3,8 +3,13 @@ import { P2pTranaction } from "../../../components/P2pTranactionsCard";
 import { SendCard } from "../../../components/sendCard";
 import { authOptions } from "../../lib/auth";
 import prisma from "@repo/db/client";
+import { redirect } from "next/navigation";
 
 async function getUser(userId: number) {
+    const session = await getServerSession(authOptions)
+    if (!session || !session.user || !session.user.id) {
+        redirect('/mainpage')
+    }
     const user = await prisma.user.findFirst({
         where: {
             id: userId,
@@ -41,9 +46,14 @@ export default async function () {
     const transaction = await getP2pTnx();
 
     return (
-        <div className="w-screen flex grid-cols-2">
-            <SendCard />
-            <P2pTranaction transactions={transaction} />
+        <div className="lg:flex pt-10 lg:w-5/6">
+            <div className="mb-10 flex justify-center lg:ml-40">
+                <SendCard />
+            </div>
+            <div className="mt-10 flex justify-center lg:ml-64">
+                <P2pTranaction transactions={transaction} />
+            </div>
+            
         </div>
     );
 }
