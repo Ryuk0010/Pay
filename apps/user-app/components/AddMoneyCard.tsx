@@ -6,7 +6,6 @@ import { TextInput } from "@repo/ui/TextInput"
 import { Card } from "@repo/ui/card"
 import { useState } from "react"
 import { createOnRampTnx } from "../app/lib/actions/createOnRamptnx"
-import axios from "axios"
 import { CallBankWebHook } from "../app/lib/actions/callBankWebHook"
 
 

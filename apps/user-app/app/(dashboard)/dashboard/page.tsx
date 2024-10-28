@@ -1,29 +1,10 @@
-import { getServerSession } from "next-auth";
 import { HelloCard } from "../../../components/HelloCard";
-import { authOptions } from "../../lib/auth";
-import prisma from "@repo/db/client";
 import { GetdashboardCard } from "../../../components/dashboardBalance";
 import { DebitAndCrredit } from "../../../components/debitAndCredit";
-import { redirect } from "next/navigation";
 
-async function getBalance() {
-    const session = await getServerSession(authOptions);
-    if (!session || !session.user || !session.user.id) {
-        redirect('/mainpage')
-    }
-    const balance = await prisma.balance.findFirst({
-        where: {
-            userId: Number(session?.user?.id)
-        }
-    });
-    return {
-        amount: balance?.amount || 0,
-        locked: balance?.locked || 0
-    }
-  }
+
 
 export default async function () {
-    const balance = await getBalance();
     const date = new Date();
     const hours = date.getHours();
     const greeting = (hours < 12)? ", Good Morning" : ", Good Evening";
