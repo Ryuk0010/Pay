@@ -3,7 +3,7 @@ name: Build and Deploy to Docker Hub
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   build-and-push:
@@ -26,6 +26,6 @@ jobs:
         push: true
         tags: ryuk107/pay  # Docker Hub username and repository
 
-        
+
     - name: Verify Pushed Image
       run: docker pull ryuk107/pay  # Docker Hub username and repository
