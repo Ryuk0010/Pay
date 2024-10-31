@@ -24,8 +24,8 @@ jobs:
         context: .
         file: ./docker/Dockerfile.user
         push: true
-        tags: ryuk107/pay  # Docker Hub username and repository
+        tags: ryuk107/payment  # Docker Hub username and repository
 
 
     - name: Verify Pushed Image
-      run: docker pull ryuk107/pay  # Docker Hub username and repository
+      run: docker pull ryuk107/payment  # Docker Hub username and repository
