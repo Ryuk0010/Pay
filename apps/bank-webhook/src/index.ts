@@ -1,13 +1,12 @@
 import express from "express";
 import db from "@repo/db/client";
+import prisma from "@repo/db/client";
 const app = express();
 
 app.use(express.json())
 
 
 app.post("/hdfcWebhook", async (req, res) => {
-    //TODO: Add zod validation here?
-    //TODO: HDFC bank should ideally send us a secret so we know this is sent by them
     const paymentInformation: {
         token: string;
         userId: string;
@@ -48,6 +47,12 @@ app.post("/hdfcWebhook", async (req, res) => {
             })
         ]);
 
+        const upbal = await prisma.balance.findFirst({
+            where:{
+                userId: Number(paymentInformation.userId)
+            }
+        })
+        console.log("updated bal",upbal?.amount);
         res.json({
             message: "Captured"
         })
