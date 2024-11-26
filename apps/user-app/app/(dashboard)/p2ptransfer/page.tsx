@@ -5,6 +5,16 @@ import { authOptions } from "../../lib/auth";
 import prisma from "@repo/db/client";
 import { redirect } from "next/navigation";
 
+interface Transaction {
+    id: number;
+    amount: number;
+    timestamp: Date;
+    fromUserId: number;
+    toUserId: number;
+}
+
+
+
 async function getUser(userId: number) {
     const user = await prisma.user.findFirst({
         where: {
@@ -39,7 +49,7 @@ async function getP2pTnx() {
 
     // Resolve all promises in parallel using Promise.all
     const transactions = await Promise.all(
-        txns.map(async (t : any) => ({
+        txns.map(async (t : Transaction) => ({
             time: t.timestamp,
             amount: t.amount,
             toUser: await getUser(t.toUserId),
