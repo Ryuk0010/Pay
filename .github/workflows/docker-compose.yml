@@ -1,0 +1,18 @@
+version: '3.8'
+
+  services:
+    user-app:
+      build:
+        context: .
+        dockerfile: Dockerfile
+      ports:
+        - "3000:3000"  # Port for the main User App
+      command: npm run start --prefix apps/user-app
+
+    bank-webhook:
+      build:
+        context: .
+        dockerfile: Dockerfile
+      ports:
+        - "3003:3003"  # Port for the Bank Webhook (Express server)
+      command: npm run start --prefix apps/bank-webhook

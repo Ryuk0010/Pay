@@ -1,12 +1,18 @@
 import { getUserName } from "../app/lib/actions/getUserName";
 
 export const HelloCard = async () => {
-    const user = await getUserName();
+    let user;
+    try {
+        user = await getUserName();
+    } catch (error) {
+        console.error("Error fetching user:", error);
+        return <div>Error fetching user information.</div>;
+    }
 
     return (
         <div>
             <div>
-                Hi {user.name}
+                Hi {user?.name || "Guest"}
             </div>
         </div>
     );

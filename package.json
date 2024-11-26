@@ -8,7 +8,6 @@
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "db:generate": "cd packages/db && npx prisma generate && cd ../..",
     "start-user-app": "cd ./apps/user-app && npm run start"
-
   },
   "devDependencies": {
     "prettier": "^3.2.5",
@@ -25,6 +24,8 @@
   ],
   "dependencies": {
     "clsx": "^2.1.1",
+    "docker-compose": "^1.1.0",
+    "express-validator": "^7.2.0",
     "framer-motion": "^11.11.10",
     "mini-svg-data-uri": "^1.4.4",
     "tailwind-merge": "^2.5.4"

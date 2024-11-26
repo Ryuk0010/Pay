@@ -4,7 +4,6 @@ import { authOptions } from "../auth";
 import prisma from "@repo/db/client";
 import axios from 'axios'; 
 
-
 export async function CallBankWebHook(tnxId: number){
     const session = await getServerSession(authOptions);
     const userId = session.user.id;
@@ -18,10 +17,15 @@ export async function CallBankWebHook(tnxId: number){
             id: tnxId
         }
     })
-
+    const info = {token: user?.token,
+      userId: Number(user?.userId),
+      amount: Number(user?.amount),
+      status: String(user?.status)}
+      console.log(info)
+      
     await axios({
         method: 'post',
-        url: 'http://localhost:3003/hdfcWebhook',
+        url: "http://localhost:3005/bankBackend",
         data: {
           token: user?.token,
           userId: Number(user?.userId),
@@ -34,3 +38,4 @@ export async function CallBankWebHook(tnxId: number){
         console.error("Error sending webhook:", error);
     });
 }
+

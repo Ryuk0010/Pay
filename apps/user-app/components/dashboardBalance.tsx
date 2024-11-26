@@ -28,21 +28,21 @@ export const GetdashboardCard = async () => {
     <div className="px-7 py-4">
         <div className="flex justify-between font-medium text-xl">
             <div>Your Wallet Balance is</div>
-            <div>{balance.amount}</div>
+            <div>{balance.amount / 100}</div>
         </div>
     </div>
     
     <div className="px-7 py-4">
         <div className="flex justify-between font-medium text-xl">
             <div>Your Account Balance is</div>
-            <div>{balance.locked}</div>
+            <div>{balance.locked / 100}</div>
         </div>
     </div>
 
     <div className="px-7 py-4">
         <div className="flex justify-between font-medium text-xl">
             <div>Your Total Balance is</div>
-            <div>{balance.amount + balance.locked}</div>
+            <div>{(balance.amount + balance.locked) / 100}</div>
         </div>
     </div>
 </div>

@@ -1,10 +1,15 @@
 import { getServerSession } from "next-auth";
 import { authOptions } from "../app/lib/auth";
 import prisma from "@repo/db/client";
+import { redirect } from "next/navigation";
 
 export const DebitAndCrredit = async () => {
     const session = await getServerSession(authOptions);
     const userId = Number(session?.user?.id);
+
+    if (!session || !session.user || !session.user.id) {
+        redirect('/mainpage')
+    }
     
     const debitInfo = await prisma.p2pTransfer.findFirst({
         where: {

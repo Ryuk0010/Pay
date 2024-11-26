@@ -5,18 +5,20 @@ const app = express();
 
 app.use(express.json())
 
+type PaymentInformation = {
+    token: string;
+    userId: number;
+    amount: number;
+    status: string;
+};
 
 app.post("/hdfcWebhook", async (req, res) => {
-    const paymentInformation: {
-        token: string;
-        userId: string;
-        amount: string;
-        status: string
-    } = {
+    // Assign the received data to `paymentInformation` with proper type annotation
+    const paymentInformation: PaymentInformation = {
         token: req.body.token,
-        userId: req.body.userId,
-        amount: req.body.amount,
-        status: req.body.status
+        userId: Number(req.body.userId),  // Ensuring it's a number
+        amount: Number(req.body.amount),  // Ensuring it's a number
+        status: String(req.body.status)   // Ensuring it's a string
     };
     if(paymentInformation.status == "Success"){
         res.status(411).json({
@@ -39,7 +41,7 @@ app.post("/hdfcWebhook", async (req, res) => {
             }),
             db.onRampTransaction.updateMany({
                 where: {
-                    token: paymentInformation.token
+                    token: String(paymentInformation.token)
                 }, 
                 data: {
                     status: "Success",
