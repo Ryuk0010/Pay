@@ -6,23 +6,30 @@ import prisma from "@repo/db/client";
 import { redirect } from "next/navigation";
 
 async function getUser(userId: number) {
-    const session = await getServerSession(authOptions)
-    if (!session || !session.user || !session.user.id) {
-        redirect('/mainpage')
-    }
     const user = await prisma.user.findFirst({
         where: {
             id: userId,
         },
+        select: {
+            number: true, // Only fetch the required fields
+        },
     });
+
+    if (!user) {
+        throw new Error(`User with ID ${userId} not found.`);
+    }
+
     return {
-        number: user?.number,
+        number: user.number,
     };
 }
 
+// Function to fetch peer-to-peer transactions
 async function getP2pTnx() {
     const session = await getServerSession(authOptions);
-    if (!session || !session.user?.id) return [];
+    if (!session || !session.user?.id) {
+        redirect("/mainpage"); // Ensure redirection for unauthenticated users
+    }
 
     const txns = await prisma.p2pTransfer.findMany({
         where: {
@@ -42,8 +49,9 @@ async function getP2pTnx() {
     return transactions;
 }
 
-export default async function () {
-    const transaction = await getP2pTnx();
+// Main default exported component
+export default async function P2pPage() {
+    const transactions = await getP2pTnx();
 
     return (
         <div className="lg:flex pt-10 lg:w-5/6">
@@ -51,9 +59,8 @@ export default async function () {
                 <SendCard />
             </div>
             <div className="mt-10 flex justify-center lg:ml-64">
-                <P2pTranaction transactions={transaction} />
+                <P2pTranaction transactions={transactions} />
             </div>
-            
         </div>
     );
 }
