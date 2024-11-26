@@ -49,10 +49,10 @@ export default async function () {
     <div className="flex justify-center ">
       <div className="lg:w-5/6 lg:flex lg:justify-center pt-10 md:flex ">
       <div>
-      <div className="pt-4 max-w-[78vh]">
+      <div className="pt-4 lg:w-[80vh] lg:h-[40vh] w-96 lg:ml-20">
         <Card title="Note">I have created a backend server to communicate with banking APIs, but since i do not have the access to a banking api, so I am hitting the end point and adding money to the wallet</Card>
       </div>
-         <div className="pt-4 pr-4 lg:w-[80vh] lg:h-[40vh] w-96">
+         <div className="pt-4 lg:w-[80vh] lg:h-[40vh] w-96 lg:ml-20">
         <AddMoney/>
       </div>
      

@@ -39,7 +39,7 @@ async function getP2pTnx() {
 
     // Resolve all promises in parallel using Promise.all
     const transactions = await Promise.all(
-        txns.map(async (t) => ({
+        txns.map(async (t : any) => ({
             time: t.timestamp,
             amount: t.amount,
             toUser: await getUser(t.toUserId),
