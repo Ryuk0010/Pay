@@ -44,13 +44,14 @@ async function getOnRampTransactions() {
 
 export default async function () {
   const balance = await getBalance();
+  // console.log(balance.amount)
   const transactions = await getOnRampTransactions();
   return (
     <div className="flex justify-center ">
       <div className="lg:w-5/6 lg:flex lg:justify-center pt-10 md:flex ">
       <div>
       <div className="pt-4 lg:w-[80vh] lg:h-[40vh] w-96 lg:ml-20">
-        <Card title="Note">I have created a backend server to communicate with banking APIs, but since i do not have the access to a banking api, so I am hitting the end point and adding money to the wallet</Card>
+        <Card title="Note">I have created a backend server to communicate like banking APIs, but since I do not have the access to a banking API, so I have created a API to mimic like a baking API and I am hitting the end point and adding money to the wallet</Card>
       </div>
          <div className="pt-4 lg:w-[80vh] lg:h-[40vh] w-96 lg:ml-20">
         <AddMoney/>
@@ -61,6 +62,7 @@ export default async function () {
       
       <div className="pt-4 lg:w-[80vh] lg:h-[40vh] w-96 lg:ml-20">
         <BalanceCard amount={balance.amount} locked={balance.locked} />
+        
         <div className="pt-4">
         <OnRampTransactions transactions={transactions} />
         </div>

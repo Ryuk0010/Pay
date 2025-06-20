@@ -12,6 +12,9 @@ export default function Layout({
         <SidebarItem href={"/dashboard"} icon={<HomeIcon />} title="Home" />
         <SidebarItem href={"/transfer"} icon={<TransferIcon />} title="Transfer" />
         <SidebarItem href={"/p2ptransfer"} icon={<P2pTransactionsIcon />} title="Mobile Transfer" />
+        <SidebarItem href={"/payBills"} icon={<PayBillsIcon />} title="Pay Bills"/>
+        <SidebarItem href={"/crypto"} icon={<CryptoIcon />} title="Crypto"/>
+
       </div>
       <div >{children}</div> {/* Expands to fill the remaining space */}
     </div>
@@ -30,9 +33,27 @@ function TransferIcon() {
   </svg>
 }
 
+function PayBillsIcon() {
+  return <svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 24 24"
+  className="w-6 h-6"
+  opacity="0.5"
+>
+  <path d="M6 11a1 1 0 1 0 1 1 1 1 0 0 0-1-1Zm12 0a1 1 0 1 0 1 1 1 1 0 0 0-1-1Zm2-6H4A3 3 0 0 0 1 8v8a3 3 0 0 0 3 3H20a3 3 0 0 0 3-3V8a3 3 0 0 0-3-3Zm1 11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1H20a1 1 0 0 1 1 1ZM12 9a3 3 0 1 0 3 3 3 3 0 0 0-3-3Zm0 4a1 1 0 1 1 1-1 1 1 0 0 1-1 1Z"></path>
+</svg>
+
+  
+}
+
+function CryptoIcon() {
+  return <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
+  <path strokeLinecap="round" strokeLinejoin="round" d="M7.5 21 3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
+</svg>
+}
 function P2pTransactionsIcon() {
-    return <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6">
-    <path strokeLinecap="round" strokeLinejoin="round" d="M15 8.25H9m6 3H9m3 6-3-3h1.5a3 3 0 1 0 0-6M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-    </svg>
+  return <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6">
+  <path strokeLinecap="round" strokeLinejoin="round" d="M15 8.25H9m6 3H9m3 6-3-3h1.5a3 3 0 1 0 0-6M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+  </svg>
 
 }
